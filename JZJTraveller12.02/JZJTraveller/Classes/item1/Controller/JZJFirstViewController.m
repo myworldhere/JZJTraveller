@@ -17,13 +17,7 @@
 
 
 @implementation JZJFirstViewController
--(void)viewWillAppear:(BOOL)animated
-{
-    [super  viewWillAppear:animated];
-    [super viewDidLoad];
-    
 
-}
 
 - (void)viewDidLoad {
     
