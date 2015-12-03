@@ -38,7 +38,6 @@
 }
 
 
-
 -(void)request: (NSString*)httpUrl withHttpArg: (NSString*)HttpArg  {
     NSString *urlStr = [[NSString alloc]initWithFormat: @"%@?%@", httpUrl, HttpArg];
     NSURL *url = [NSURL URLWithString: urlStr];
@@ -57,8 +56,9 @@
             if (responseCode==200)
             {
                 self.allBooks=[JZJDataManager getBooksFromData:data];
-                [self.tableView reloadData];
-                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                });
             }
         }
     }];
@@ -68,7 +68,6 @@
 #pragma  mark  - Table View Data Source
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     return self.allBooks.count;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,5 +77,13 @@
     cell.book=book;
     return cell;
 }
+
+#pragma  mark -Table View delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+}
+
 
 @end

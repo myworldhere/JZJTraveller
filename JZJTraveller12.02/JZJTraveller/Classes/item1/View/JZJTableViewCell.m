@@ -11,9 +11,8 @@
 #import "UIImageView+WebCache.h"
 @interface JZJTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
-//@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-//@property (weak, nonatomic) IBOutlet UIImageView *userheadImageView;
+
 @property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *routeDaysLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
@@ -35,8 +34,7 @@
 
     self.likeLabel.text=[NSString stringWithFormat:@"%@",_book.likeCount];
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:_book.headImage] placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
-    //    self.usernameLabel.text=_book.userName;
-    //    [self.userheadImageView sd_setImageWithURL:[NSURL URLWithString:_book.userHeadImg] placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
+
     
 }
 

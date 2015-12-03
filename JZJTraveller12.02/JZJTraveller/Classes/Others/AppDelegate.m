@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "JZJWelcomeViewController.h"
 #import "JZJTabBarController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -17,16 +19,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     
-    JZJTabBarController* tabBarVC=[[JZJTabBarController alloc]init];
-    self.window.rootViewController=tabBarVC;
+    
+    self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    JZJWelcomeViewController* welcomeVC=[[JZJWelcomeViewController alloc]init];
+    BOOL isNotFirstTime=[[NSUserDefaults standardUserDefaults]boolForKey:JZJIsNotFirstTimeToOpen];
+    if (isNotFirstTime)
+    {
+        self.window.rootViewController=[[JZJTabBarController alloc]init];
+    }
+    else
+        self.window.rootViewController=welcomeVC;
     
     [self.window makeKeyAndVisible];
-    
-    
-    
     return YES;
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
