@@ -55,26 +55,26 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgg-4l-qwX">
-                        <rect key="frame" x="40" y="239" width="42" height="20"/>
+                        <rect key="frame" x="40" y="239" width="33" height="20"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="routeDays" translatesAutoresizingMaskIntoConstraints="NO" id="MTi-rk-d1J">
-                        <rect key="frame" x="87" y="239" width="20" height="20"/>
+                        <rect key="frame" x="78" y="239" width="20" height="20"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="w53-7n-W2e"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cpn-HH-sUY">
-                        <rect key="frame" x="112" y="239" width="42" height="20"/>
+                        <rect key="frame" x="103" y="239" width="33" height="20"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="DE0-sG-DYv"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                         <variation key="default">
@@ -82,6 +82,28 @@
                                 <exclude reference="DE0-sG-DYv"/>
                             </mask>
                         </variation>
+                    </label>
+                    <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="38J-Jk-y0Q">
+                        <rect key="frame" x="145" y="241" width="20" height="20"/>
+                        <animations/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHe-7m-Zgw">
+                        <rect key="frame" x="167" y="241" width="38" height="20"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="View" translatesAutoresizingMaskIntoConstraints="NO" id="e2m-pW-VrR">
+                        <rect key="frame" x="207" y="241" width="20" height="20"/>
+                        <animations/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3T-HL-wdl">
+                        <rect key="frame" x="229" y="241" width="38" height="20"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <animations/>
@@ -116,14 +138,18 @@
             <connections>
                 <outlet property="descriptionLabel" destination="hTt-xt-Fkz" id="t7X-oc-Zlu"/>
                 <outlet property="headImageView" destination="h5P-sY-b1a" id="qY0-8m-7sp"/>
+                <outlet property="likeLabel" destination="hHe-7m-Zgw" id="Inj-H2-An8"/>
                 <outlet property="routeDaysLabel" destination="Cpn-HH-sUY" id="7ye-2t-jrh"/>
                 <outlet property="startTimeLabel" destination="bgg-4l-qwX" id="AAO-2Z-imU"/>
                 <outlet property="titleLabel" destination="APq-Zc-dMx" id="dBC-HR-07j"/>
+                <outlet property="viewCountLabel" destination="w3T-HL-wdl" id="hQW-4E-wAI"/>
             </connections>
             <point key="canvasLocation" x="228" y="314"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="View" width="20" height="19"/>
+        <image name="like" width="20" height="20"/>
         <image name="routeDays" width="20" height="20"/>
         <image name="startTime" width="20" height="20"/>
     </resources>

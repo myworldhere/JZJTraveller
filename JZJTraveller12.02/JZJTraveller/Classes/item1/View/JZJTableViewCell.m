@@ -17,9 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *routeDaysLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *likeLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *viewCountLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *likeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *viewCountLabel;
 
 
 @end
@@ -31,12 +30,13 @@
     self.descriptionLabel.text=_book.text;
     self.startTimeLabel.text=_book.startTime;
     self.routeDaysLabel.text=[NSString stringWithFormat:@"%@天",_book.routeDays];
-//    self.viewCountLabel.text=[NSString stringWithFormat:@"%@",_book.viewCount];
-//    self.commentLabel.text=[NSString stringWithFormat:@"%@",_book.commentCount];
-//    self.usernameLabel.text=_book.userName;
-//    self.likeLabel.text=[NSString stringWithFormat:@"%@",_book.likeCount];
+    self.viewCountLabel.text=[NSString stringWithFormat:@"%@",_book.viewCount];
+    
+
+    self.likeLabel.text=[NSString stringWithFormat:@"%@",_book.likeCount];
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:_book.headImage] placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
-//    [self.userheadImageView sd_setImageWithURL:[NSURL URLWithString:_book.userHeadImg] placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
+    //    self.usernameLabel.text=_book.userName;
+    //    [self.userheadImageView sd_setImageWithURL:[NSURL URLWithString:_book.userHeadImg] placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
     
 }
 
