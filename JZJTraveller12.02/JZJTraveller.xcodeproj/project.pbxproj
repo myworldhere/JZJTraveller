@@ -24,6 +24,8 @@
 		855484C31C0EC8E000F3F641 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 855484B21C0EC8DF00F3F641 /* UIImageView+WebCache.m */; };
 		855484C41C0EC8E000F3F641 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 855484B41C0EC8DF00F3F641 /* UIView+WebCacheOperation.m */; };
 		8555A8691C104CDA0017C20C /* JZJWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8555A8681C104CDA0017C20C /* JZJWelcomeViewController.m */; };
+		856CE16C1C111D9D003E6820 /* JZJNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 856CE16B1C111D9D003E6820 /* JZJNavigationItem.m */; };
+		856CE16E1C111DB2003E6820 /* JZJNavigationItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856CE16D1C111DB2003E6820 /* JZJNavigationItem.xib */; };
 		85FA3FD71C0DC41A00EF9C1D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FA3FD61C0DC41A00EF9C1D /* main.m */; };
 		85FA3FE21C0DC41A00EF9C1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85FA3FE11C0DC41A00EF9C1D /* Assets.xcassets */; };
 		85FA3FE51C0DC41A00EF9C1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85FA3FE31C0DC41A00EF9C1D /* LaunchScreen.storyboard */; };
@@ -76,6 +78,9 @@
 		855484B41C0EC8DF00F3F641 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		8555A8671C104CDA0017C20C /* JZJWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJWelcomeViewController.h; sourceTree = "<group>"; };
 		8555A8681C104CDA0017C20C /* JZJWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJWelcomeViewController.m; sourceTree = "<group>"; };
+		856CE16A1C111D9D003E6820 /* JZJNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJNavigationItem.h; sourceTree = "<group>"; };
+		856CE16B1C111D9D003E6820 /* JZJNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJNavigationItem.m; sourceTree = "<group>"; };
+		856CE16D1C111DB2003E6820 /* JZJNavigationItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZJNavigationItem.xib; sourceTree = "<group>"; };
 		85FA3FD21C0DC41A00EF9C1D /* JZJTraveller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JZJTraveller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85FA3FD61C0DC41A00EF9C1D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		85FA3FE11C0DC41A00EF9C1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -247,6 +252,9 @@
 				997E7FFE1C0DE34100EBC1A1 /* JZJTableViewCell.h */,
 				997E7FFF1C0DE34100EBC1A1 /* JZJTableViewCell.m */,
 				997E80001C0DE34100EBC1A1 /* JZJTableViewCell.xib */,
+				856CE16A1C111D9D003E6820 /* JZJNavigationItem.h */,
+				856CE16B1C111D9D003E6820 /* JZJNavigationItem.m */,
+				856CE16D1C111DB2003E6820 /* JZJNavigationItem.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -463,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85FA3FE51C0DC41A00EF9C1D /* LaunchScreen.storyboard in Resources */,
+				856CE16E1C111DB2003E6820 /* JZJNavigationItem.xib in Resources */,
 				85FA3FE21C0DC41A00EF9C1D /* Assets.xcassets in Resources */,
 				997E80021C0DE34100EBC1A1 /* JZJTableViewCell.xib in Resources */,
 				85FA40191C0DC46B00EF9C1D /* JZJForthViewController.storyboard in Resources */,
@@ -503,6 +512,7 @@
 				855484B61C0EC8E000F3F641 /* NSData+ImageContentType.m in Sources */,
 				85FA40171C0DC46B00EF9C1D /* JZJThirdViewController.m in Sources */,
 				8555A8691C104CDA0017C20C /* JZJWelcomeViewController.m in Sources */,
+				856CE16C1C111D9D003E6820 /* JZJNavigationItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

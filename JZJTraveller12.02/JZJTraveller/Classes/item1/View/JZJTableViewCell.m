@@ -26,7 +26,7 @@
 {
     _book=book;
     self.titleLabel.text=_book.title;
-    self.descriptionLabel.text=_book.text;
+    self.descriptionLabel.text=[NSString stringWithFormat:@"行程:%@",_book.text];
     self.startTimeLabel.text=_book.startTime;
     self.routeDaysLabel.text=[NSString stringWithFormat:@"%@天",_book.routeDays];
     self.viewCountLabel.text=[NSString stringWithFormat:@"%@",_book.viewCount];

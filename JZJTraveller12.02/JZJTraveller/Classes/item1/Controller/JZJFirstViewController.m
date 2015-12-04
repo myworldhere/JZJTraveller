@@ -9,10 +9,15 @@
 #import "JZJFirstViewController.h"
 #import "JZJDataManager.h"
 #import "JZJTableViewCell.h"
+#import "JZJNavigationItem.h"
 @interface JZJFirstViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSArray* allBooks;
 @property (nonatomic,strong) NSURLSessionDataTask* task;
 @property (nonatomic,strong) UITableView* tableView;
+@property (nonatomic,strong) NSString* cityName;
+@property (nonatomic,strong) NSString* httpUrl;
+@property (nonatomic,strong) NSString* httpArg;
+@property (nonatomic,strong) JZJNavigationItem* itemView;
 @end
 
 
@@ -23,10 +28,9 @@
     
     [super viewDidLoad];
     
-    NSString *httpUrl = @"http://apis.baidu.com/qunartravel/travellist/travellist";
-    NSString *httpArg = @"query=%22%22&page=1";
-    [self request: httpUrl withHttpArg: httpArg];
-    
+    self.httpUrl = @"http://apis.baidu.com/qunartravel/travellist/travellist";
+    self.httpArg = @"query=%22%22&page=1";
+    [self request:self.httpUrl withHttpArg: self.httpArg];
     
     self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [self.tableView registerNib:[UINib nibWithNibName:@"JZJTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
@@ -34,10 +38,44 @@
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     
+    [self setupNavigationItem];
     [self.view addSubview:self.tableView];
+    
+    
 }
 
 
+
+
+
+
+#pragma mark - navigationItem
+-(void)setupNavigationItem
+{
+    JZJNavigationItem* itemView=[JZJNavigationItem navigationBarView];
+    UIBarButtonItem* searchItem=[[UIBarButtonItem alloc]initWithCustomView:itemView];
+    self.navigationItem.leftBarButtonItem=searchItem;
+    
+    [itemView.searchButton addTarget:self action:@selector(searchBlogs) forControlEvents:UIControlEventTouchUpInside];
+    self.itemView=itemView;
+}
+
+-(void)searchBlogs
+{
+    self.cityName=self.itemView.searchTextField.text;
+    NSMutableString *ms = [[NSMutableString alloc] initWithString:self.cityName];
+    if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformMandarinLatin, NO)) {
+        NSLog(@"Pingying: %@", ms); // wǒ shì zhōng guó rén
+    }
+    if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformStripDiacritics, NO)) {
+        NSLog(@"Pingying: %@", ms); // wo shi zhong guo ren
+        self.cityName=ms;
+        NSLog(@"*****%@*****",self.cityName);
+        [self request:self.httpUrl withHttpArg:[NSString stringWithFormat:@"query=%@&page=1",self.cityName]];
+    }
+}
+
+#pragma  mark - 请求JSON数据
 -(void)request: (NSString*)httpUrl withHttpArg: (NSString*)HttpArg  {
     NSString *urlStr = [[NSString alloc]initWithFormat: @"%@?%@", httpUrl, HttpArg];
     NSURL *url = [NSURL URLWithString: urlStr];
