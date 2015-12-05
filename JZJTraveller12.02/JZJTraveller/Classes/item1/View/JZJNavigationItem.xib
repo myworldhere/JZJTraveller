@@ -8,24 +8,26 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JZJNavigationItem">
-            <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
+            <rect key="frame" x="0.0" y="0.0" width="100" height="25"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="三亚" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KZS-Yh-XNI">
-                    <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="三亚" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KZS-Yh-XNI">
+                    <rect key="frame" x="0.0" y="0.0" width="70" height="25"/>
                     <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KoF-WM-z3c">
-                    <rect key="frame" x="50" y="0.0" width="30" height="30"/>
+                    <rect key="frame" x="70" y="0.0" width="30" height="25"/>
                     <animations/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <state key="normal" title="搜索"/>
                 </button>
             </subviews>
             <animations/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="KoF-WM-z3c" firstAttribute="leading" secondItem="KZS-Yh-XNI" secondAttribute="trailing" id="Fgl-fg-2Rd"/>
                 <constraint firstItem="KZS-Yh-XNI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dNi-7T-83T"/>

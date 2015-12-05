@@ -41,14 +41,8 @@
     [self setupNavigationItem];
     [self.view addSubview:self.tableView];
     
-    
+
 }
-
-
-
-
-
-
 #pragma mark - navigationItem
 -(void)setupNavigationItem
 {
@@ -57,21 +51,28 @@
     self.navigationItem.leftBarButtonItem=searchItem;
     
     [itemView.searchButton addTarget:self action:@selector(searchBlogs) forControlEvents:UIControlEventTouchUpInside];
+    [itemView.searchTextField addTarget:self action:@selector(searchBlogs) forControlEvents:UIControlEventEditingDidEndOnExit];
     self.itemView=itemView;
 }
 
 -(void)searchBlogs
 {
+    [self.itemView.searchTextField resignFirstResponder];
+    
     self.cityName=self.itemView.searchTextField.text;
     NSMutableString *ms = [[NSMutableString alloc] initWithString:self.cityName];
     if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformMandarinLatin, NO)) {
-        NSLog(@"Pingying: %@", ms); // wǒ shì zhōng guó rén
+//        NSLog(@"Pingying: %@", ms); // wǒ shì zhōng guó rén
     }
     if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformStripDiacritics, NO)) {
-        NSLog(@"Pingying: %@", ms); // wo shi zhong guo ren
-        self.cityName=ms;
-        NSLog(@"*****%@*****",self.cityName);
-        [self request:self.httpUrl withHttpArg:[NSString stringWithFormat:@"query=%@&page=1",self.cityName]];
+//        NSLog(@"Pingying: %@", ms); // wo shi zhong guo ren
+        if (ms.length)
+        {
+            NSRange range=[ms rangeOfString:ms];
+            [ms replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:range];
+        }
+        self.httpArg=[NSString stringWithFormat:@"query=%@&page=1",ms];
+        [self request:self.httpUrl withHttpArg:self.httpArg];
     }
 }
 
