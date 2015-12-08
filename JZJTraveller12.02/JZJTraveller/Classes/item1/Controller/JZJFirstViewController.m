@@ -10,6 +10,7 @@
 #import "JZJDataManager.h"
 #import "JZJTableViewCell.h"
 #import "JZJNavigationItem.h"
+#import "JZJWebViewController.h"
 @interface JZJFirstViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSArray* allBooks;
 @property (nonatomic,strong) NSURLSessionDataTask* task;
@@ -120,7 +121,9 @@
 #pragma  mark -Table View delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    JZJWebViewController* webView=[[JZJWebViewController alloc]init];
+    webView.book=self.allBooks[indexPath.row];
+    [self.navigationController pushViewController:webView animated:YES];
     
 }
 
