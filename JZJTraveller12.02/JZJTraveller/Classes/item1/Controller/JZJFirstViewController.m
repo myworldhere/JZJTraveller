@@ -11,39 +11,49 @@
 #import "JZJTableViewCell.h"
 #import "JZJNavigationItem.h"
 #import "JZJWebViewController.h"
+#import "UIScrollView+BottomRefreshControl.h"
 @interface JZJFirstViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic,strong) NSArray* allBooks;
+@property (nonatomic,strong) NSMutableArray* allBooks;
 @property (nonatomic,strong) NSURLSessionDataTask* task;
 @property (nonatomic,strong) UITableView* tableView;
-@property (nonatomic,strong) NSString* cityName;
 @property (nonatomic,strong) NSString* httpUrl;
 @property (nonatomic,strong) NSString* httpArg;
 @property (nonatomic,strong) JZJNavigationItem* itemView;
+@property (nonatomic,strong) NSString* cityName;
+@property (nonatomic,assign) int page;
+
 @end
 
 
 @implementation JZJFirstViewController
+-(NSMutableArray *)allBooks
+{
+    if (!_allBooks)
+    {
+        _allBooks=[@[]mutableCopy];
+    }
+    return _allBooks;
+}
 
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    self.httpUrl = @"http://apis.baidu.com/qunartravel/travellist/travellist";
-    self.httpArg = @"query=%22%22&page=1";
-    [self request:self.httpUrl withHttpArg: self.httpArg];
-    
+    [self loadNewBooksWithCityName:nil];
     self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [self.tableView registerNib:[UINib nibWithNibName:@"JZJTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.tableView.rowHeight=300;
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
+    [self setupRefreshControl];
+   
     
     [self setupNavigationItem];
     [self.view addSubview:self.tableView];
     
-
 }
+
+
 #pragma mark - navigationItem
 -(void)setupNavigationItem
 {
@@ -60,8 +70,7 @@
 {
     [self.itemView.searchTextField resignFirstResponder];
     
-    self.cityName=self.itemView.searchTextField.text;
-    NSMutableString *ms = [[NSMutableString alloc] initWithString:self.cityName];
+    NSMutableString *ms = [[NSMutableString alloc] initWithString:self.itemView.searchTextField.text];
     if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformMandarinLatin, NO)) {
 //        NSLog(@"Pingying: %@", ms); // wǒ shì zhōng guó rén
     }
@@ -72,13 +81,39 @@
             NSRange range=[ms rangeOfString:ms];
             [ms replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:range];
         }
-        self.httpArg=[NSString stringWithFormat:@"query=%@&page=1",ms];
-        [self request:self.httpUrl withHttpArg:self.httpArg];
+        self.cityName=ms;
+        [self loadNewBooksWithCityName:self.cityName];
+        [self scrollToTopRow];
     }
 }
 
+
+
+
+
+
 #pragma  mark - 请求JSON数据
--(void)request: (NSString*)httpUrl withHttpArg: (NSString*)HttpArg  {
+/*第一次加载界面*/
+- (void)loadNewBooksWithCityName:(NSString*)cityName
+{
+    self.page=1;
+    [self sendRequestToServerWithCityName:cityName andPage:self.page];
+}
+
+- (void)loadMoreBooks
+{
+    self.page++;
+    [self sendRequestToServerWithCityName:self.cityName andPage:self.page];
+}
+
+- (void)sendRequestToServerWithCityName:(NSString*)cityName andPage:(int)page
+{
+    self.httpArg =[NSString stringWithFormat:@"query=%@&page=%d",cityName?cityName:@"%22%22",page];
+    [self requestWithHttpArg:self.httpArg];
+}
+
+-(void)requestWithHttpArg: (NSString*)HttpArg  {
+    NSString* httpUrl = @"http://apis.baidu.com/qunartravel/travellist/travellist";
     NSString *urlStr = [[NSString alloc]initWithFormat: @"%@?%@", httpUrl, HttpArg];
     NSURL *url = [NSURL URLWithString: urlStr];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: url cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 10];
@@ -89,20 +124,37 @@
         if (error)
         {
             NSLog(@"HttpError:%@",error.userInfo);
+            [self.tableView.bottomRefreshControl endRefreshing];
         }
         else
         {
             NSInteger responseCode=[(NSHTTPURLResponse*)response statusCode];
             if (responseCode==200)
             {
-                self.allBooks=[JZJDataManager getBooksFromData:data];
+                if (self.page==1)
+                {
+                    [self.allBooks removeAllObjects];
+                }
+                [self.allBooks addObjectsFromArray:[JZJDataManager getBooksFromData:data]];
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
+                    [self.tableView.bottomRefreshControl endRefreshing];
                 });
             }
         }
     }];
     [self.task resume];
+}
+
+#pragma mark - 下拉刷新
+- (void)setupRefreshControl
+{
+    UIRefreshControl* refreshControl=[[UIRefreshControl alloc]init];
+    refreshControl.attributedTitle=[[NSAttributedString alloc]initWithString:@"正在加载更多……"];
+    refreshControl.triggerVerticalOffset=100;
+    [refreshControl addTarget:self action:@selector(loadMoreBooks) forControlEvents:UIControlEventValueChanged];
+    self.tableView.bottomRefreshControl=refreshControl;
 }
 
 #pragma  mark  - Table View Data Source
@@ -126,6 +178,10 @@
     [self.navigationController pushViewController:webView animated:YES];
     
 }
-
+-(void)scrollToTopRow
+{
+    NSIndexPath* indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
 
 @end

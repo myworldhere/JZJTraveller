@@ -26,6 +26,9 @@
 {
     _book=book;
     self.titleLabel.text=_book.title;
+    self.titleLabel.layer.shadowColor=[[UIColor blackColor]CGColor];
+    self.titleLabel.layer.shadowOffset=CGSizeMake(5, 5);
+    self.titleLabel.layer.shadowOpacity=2;
     self.descriptionLabel.text=[NSString stringWithFormat:@"行程:%@",_book.text];
     self.startTimeLabel.text=_book.startTime;
     self.routeDaysLabel.text=[NSString stringWithFormat:@"%@天",_book.routeDays];

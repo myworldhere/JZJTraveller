@@ -29,7 +29,6 @@
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
-    
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView
