@@ -12,6 +12,7 @@
 #import "JZJNavigationItem.h"
 #import "JZJWebViewController.h"
 #import "UIScrollView+BottomRefreshControl.h"
+#import "JZJRequestCenter.h"
 @interface JZJFirstViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSMutableArray* allBooks;
 @property (nonatomic,strong) NSURLSessionDataTask* task;
@@ -83,14 +84,9 @@
         }
         self.cityName=ms;
         [self loadNewBooksWithCityName:self.cityName];
-        [self scrollToTopRow];
+        [self.tableView setContentOffset:CGPointZero animated:NO];
     }
 }
-
-
-
-
-
 
 #pragma  mark - 请求JSON数据
 /*第一次加载界面*/
@@ -110,6 +106,7 @@
 {
     self.httpArg =[NSString stringWithFormat:@"query=%@&page=%d",cityName?cityName:@"%22%22",page];
     [self requestWithHttpArg:self.httpArg];
+ 
 }
 
 -(void)requestWithHttpArg: (NSString*)HttpArg  {
@@ -152,7 +149,7 @@
 {
     UIRefreshControl* refreshControl=[[UIRefreshControl alloc]init];
     refreshControl.attributedTitle=[[NSAttributedString alloc]initWithString:@"正在加载更多……"];
-    refreshControl.triggerVerticalOffset=100;
+    refreshControl.triggerVerticalOffset=50;
     [refreshControl addTarget:self action:@selector(loadMoreBooks) forControlEvents:UIControlEventValueChanged];
     self.tableView.bottomRefreshControl=refreshControl;
 }
@@ -176,12 +173,7 @@
     JZJWebViewController* webView=[[JZJWebViewController alloc]init];
     webView.book=self.allBooks[indexPath.row];
     [self.navigationController pushViewController:webView animated:YES];
-    
 }
--(void)scrollToTopRow
-{
-    NSIndexPath* indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-}
+
 
 @end
