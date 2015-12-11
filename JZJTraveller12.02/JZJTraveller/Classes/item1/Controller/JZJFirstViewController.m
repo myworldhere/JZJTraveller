@@ -36,19 +36,18 @@
     return _allBooks;
 }
 
-
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self loadNewBooksWithCityName:nil];
+   
     self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [self.tableView registerNib:[UINib nibWithNibName:@"JZJTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.tableView.rowHeight=300;
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
-    [self setupRefreshControl];
-   
     
+    [self loadNewBooksWithCityName:nil];
+    [self setupRefreshControl];
     [self setupNavigationItem];
     [self.view addSubview:self.tableView];
     
@@ -111,37 +110,38 @@
 
 -(void)requestWithHttpArg: (NSString*)HttpArg  {
     NSString* httpUrl = @"http://apis.baidu.com/qunartravel/travellist/travellist";
-    NSString *urlStr = [[NSString alloc]initWithFormat: @"%@?%@", httpUrl, HttpArg];
-    NSURL *url = [NSURL URLWithString: urlStr];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: url cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 10];
-    [request setHTTPMethod: @"GET"];
-    [request addValue: @"5a9455242f3f74e42f972f2f9323e33a" forHTTPHeaderField: @"apikey"];
-    
-    self.task=[[NSURLSession sharedSession]dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error)
-        {
-            NSLog(@"HttpError:%@",error.userInfo);
-            [self.tableView.bottomRefreshControl endRefreshing];
-        }
-        else
-        {
-            NSInteger responseCode=[(NSHTTPURLResponse*)response statusCode];
-            if (responseCode==200)
-            {
-                if (self.page==1)
-                {
-                    [self.allBooks removeAllObjects];
-                }
-                [self.allBooks addObjectsFromArray:[JZJDataManager getBooksFromData:data]];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                    [self.tableView.bottomRefreshControl endRefreshing];
-                });
-            }
-        }
-    }];
-    [self.task resume];
+//    NSString *urlStr = [[NSString alloc]initWithFormat: @"%@?%@", httpUrl, HttpArg];
+//    NSURL *url = [NSURL URLWithString: urlStr];
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: url cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 10];
+//    [request setHTTPMethod: @"GET"];
+//    [request addValue: @"5a9455242f3f74e42f972f2f9323e33a" forHTTPHeaderField: @"apikey"];
+//    NSLog(@"%@",request);
+//    self.task=[[NSURLSession sharedSession]dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        if (error)
+//        {
+//            NSLog(@"HttpError:%@",error.userInfo);
+//            [self.tableView.bottomRefreshControl endRefreshing];
+//        }
+//        else
+//        {
+//            NSInteger responseCode=[(NSHTTPURLResponse*)response statusCode];
+//            if (responseCode==200)
+//            {
+//                if (self.page==1)
+//                {
+//                    [self.allBooks removeAllObjects];
+//                }
+//                [self.allBooks addObjectsFromArray:[JZJDataManager getBooksFromData:data]];
+//                
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [self.tableView reloadData];
+//                    [self.tableView.bottomRefreshControl endRefreshing];
+//                });
+//            }
+//        }
+//    }];
+//    [self.task resume];
+    [JZJRequestCenter tableView:self.tableView requestHttpUrl:httpUrl withHttpArg:HttpArg onPage:self.page forMutableArray:self.allBooks];
 }
 
 #pragma mark - 下拉刷新
@@ -174,6 +174,5 @@
     webView.book=self.allBooks[indexPath.row];
     [self.navigationController pushViewController:webView animated:YES];
 }
-
 
 @end
