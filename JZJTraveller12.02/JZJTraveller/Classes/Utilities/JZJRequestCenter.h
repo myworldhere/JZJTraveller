@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 @class UITableView;
 @interface JZJRequestCenter : NSObject
-+(void)tableView:(UITableView*)tableView requestHttpUrl:(NSString*)httpUrl withHttpArg:(NSString*)HttpArg onPage:(int)page forMutableArray:(NSMutableArray*)mutableArray;
++(NSURLRequest*)generateRequestByHttpUrl:(NSString*)httpUrl withHttpArg:(NSString*)HttpArg;
 
 @end

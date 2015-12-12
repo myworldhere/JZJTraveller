@@ -8,24 +8,60 @@
 
 #import "JZJDataManager.h"
 #import "JZJBooks.h"
-
+#import "JZJResort.h"
+#import "JZJTicketInformation.h"
+#import "JZJTicketAttention.h"
 @implementation JZJDataManager
 
+
+#pragma mark - 解析并获取热门游记博文
 +(NSArray *)getBooksFromData:(id)data{
     
-       return  [[self alloc]parseJSONDataWithData:data];
+    return  [[self alloc]parseJSONDataForClass:[JZJBooks class] WithData:data];
 }
--(NSArray*)parseJSONDataWithData:(id)data
+
+///解析JSON数据，并获取数组数据
+-(NSArray *)parseJSONDataForClass:(Class)className WithData:(id)data
 {
-    NSDictionary* Originaldict=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    NSArray* BookArray=Originaldict[@"data"][@"books"];
     NSMutableArray* mutableArray=[@[]mutableCopy];
-    for (NSDictionary* dict in BookArray)
+    for (NSDictionary* dict in data)
     {
-        JZJBooks* book=[JZJBooks new];
-        [book setValuesForKeysWithDictionary:dict];
-        [mutableArray addObject:book];
+        id instance = [className new];
+        [instance setValuesForKeysWithDictionary:dict];
+        [mutableArray addObject:instance];
     }
     return [mutableArray copy];
 }
+
+#pragma mark - 解析并获取景点详情
++(JZJResort *)getResortsFromData:(id)data
+{
+    return [[self alloc]parseJSONDataForResortFromData:data];
+}
+
+-(JZJResort *)parseJSONDataForResortFromData:(id)data
+{
+    JZJResort* resort=[JZJResort new];
+    [resort setValuesForKeysWithDictionary:data];
+    return resort;
+}
+#pragma mark - 解析并获取票务信息
++(JZJTicketInformation *)getTicketInformationOfResort:(NSDictionary *)tick_infoDict{
+    JZJTicketInformation* information=[[JZJTicketInformation alloc]init];
+    [information setValuesForKeysWithDictionary:tick_infoDict];
+    return information;
+}
+
++(NSArray *)getTicketAttentionOfTicketInformation:(NSArray *)attentionArray{
+    
+    NSMutableArray* attentionMutableArray=[@[]mutableCopy];
+    for (NSDictionary* attentionDict in attentionArray)
+    {
+        JZJTicketAttention* attention=[JZJTicketAttention new];
+        [attention setValuesForKeysWithDictionary:attentionDict];
+        [attentionMutableArray addObject:attention];
+    }
+    return [attentionMutableArray copy];
+}
+
 @end

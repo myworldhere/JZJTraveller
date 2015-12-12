@@ -13,6 +13,7 @@
 #import "JZJWebViewController.h"
 #import "UIScrollView+BottomRefreshControl.h"
 #import "JZJRequestCenter.h"
+#import "MBProgressHUD+KR.h"
 @interface JZJFirstViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSMutableArray* allBooks;
 @property (nonatomic,strong) NSURLSessionDataTask* task;
@@ -63,8 +64,15 @@
     
     [itemView.searchButton addTarget:self action:@selector(searchBlogs) forControlEvents:UIControlEventTouchUpInside];
     [itemView.searchTextField addTarget:self action:@selector(searchBlogs) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [itemView.searchTextField addTarget:self action:@selector(beginToInput) forControlEvents:UIControlEventEditingDidBegin];
     self.itemView=itemView;
 }
+
+-(void)beginToInput
+{
+    [MBProgressHUD showError:@"请输入城市名, 如 西安 或xian "];
+}
+
 
 -(void)searchBlogs
 {
@@ -72,10 +80,10 @@
     
     NSMutableString *ms = [[NSMutableString alloc] initWithString:self.itemView.searchTextField.text];
     if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformMandarinLatin, NO)) {
-//        NSLog(@"Pingying: %@", ms); // wǒ shì zhōng guó rén
+//        MYLog(@"Pingying: %@", ms); // wǒ shì zhōng guó rén
     }
     if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformStripDiacritics, NO)) {
-//        NSLog(@"Pingying: %@", ms); // wo shi zhong guo ren
+//        MYLog(@"Pingying: %@", ms); // wo shi zhong guo ren
         if (ms.length)
         {
             NSRange range=[ms rangeOfString:ms];
@@ -110,38 +118,36 @@
 
 -(void)requestWithHttpArg: (NSString*)HttpArg  {
     NSString* httpUrl = @"http://apis.baidu.com/qunartravel/travellist/travellist";
-//    NSString *urlStr = [[NSString alloc]initWithFormat: @"%@?%@", httpUrl, HttpArg];
-//    NSURL *url = [NSURL URLWithString: urlStr];
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: url cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 10];
-//    [request setHTTPMethod: @"GET"];
-//    [request addValue: @"5a9455242f3f74e42f972f2f9323e33a" forHTTPHeaderField: @"apikey"];
-//    NSLog(@"%@",request);
-//    self.task=[[NSURLSession sharedSession]dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        if (error)
-//        {
-//            NSLog(@"HttpError:%@",error.userInfo);
-//            [self.tableView.bottomRefreshControl endRefreshing];
-//        }
-//        else
-//        {
-//            NSInteger responseCode=[(NSHTTPURLResponse*)response statusCode];
-//            if (responseCode==200)
-//            {
-//                if (self.page==1)
-//                {
-//                    [self.allBooks removeAllObjects];
-//                }
-//                [self.allBooks addObjectsFromArray:[JZJDataManager getBooksFromData:data]];
-//                
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self.tableView reloadData];
-//                    [self.tableView.bottomRefreshControl endRefreshing];
-//                });
-//            }
-//        }
-//    }];
-//    [self.task resume];
-    [JZJRequestCenter tableView:self.tableView requestHttpUrl:httpUrl withHttpArg:HttpArg onPage:self.page forMutableArray:self.allBooks];
+    NSURLRequest* request=[JZJRequestCenter generateRequestByHttpUrl:httpUrl withHttpArg:HttpArg];
+   
+    self.task=[[NSURLSession sharedSession]dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error)
+        {
+            MYLog(@"HttpError:%@",error.userInfo);
+            [self.tableView.bottomRefreshControl endRefreshing];
+        }
+        else
+        {
+            NSInteger responseCode=[(NSHTTPURLResponse*)response statusCode];
+            if (responseCode==200)
+            {
+                if (self.page==1)
+                {
+                    [self.allBooks removeAllObjects];
+                }
+                NSDictionary* originaldict=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                NSArray* originalArray=originaldict[@"data"][@"books"];
+                
+                [self.allBooks addObjectsFromArray:[JZJDataManager getBooksFromData:originalArray]];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    [self.tableView.bottomRefreshControl endRefreshing];
+                });
+            }
+        }
+    }];
+    [self.task resume];
 }
 
 #pragma mark - 下拉刷新

@@ -38,6 +38,14 @@
 		8578F0F71C1907A50012E8CF /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8578F0DA1C1907A50012E8CF /* UIView+WebCacheOperation.m */; };
 		8578F0F81C1907A50012E8CF /* JZJDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8578F0DD1C1907A50012E8CF /* JZJDataManager.m */; };
 		8578F0FB1C1909290012E8CF /* JZJRequestCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8578F0FA1C1909290012E8CF /* JZJRequestCenter.m */; };
+		857CB56B1C1BBFB400174B42 /* JZJResort.m in Sources */ = {isa = PBXBuildFile; fileRef = 857CB56A1C1BBFB400174B42 /* JZJResort.m */; };
+		857CB5731C1BCE0500174B42 /* MBProgressHUD+KR.m in Sources */ = {isa = PBXBuildFile; fileRef = 857CB56F1C1BCE0500174B42 /* MBProgressHUD+KR.m */; };
+		857CB5741C1BCE0500174B42 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 857CB5701C1BCE0500174B42 /* MBProgressHUD.bundle */; };
+		857CB5751C1BCE0500174B42 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 857CB5721C1BCE0500174B42 /* MBProgressHUD.m */; };
+		857CB5771C1BDD7A00174B42 /* JZJSecondViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857CB5761C1BDD7A00174B42 /* JZJSecondViewController.storyboard */; };
+		857CB57D1C1BFC0500174B42 /* JZJDetailInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 857CB57C1C1BFC0500174B42 /* JZJDetailInformationViewController.m */; };
+		857CB5801C1C113800174B42 /* JZJTicketInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 857CB57F1C1C113800174B42 /* JZJTicketInformation.m */; };
+		857CB5831C1C11D200174B42 /* JZJTicketAttention.m in Sources */ = {isa = PBXBuildFile; fileRef = 857CB5821C1C11D200174B42 /* JZJTicketAttention.m */; };
 		85A4F20B1C17031A007F2B48 /* JZJWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A4F20A1C17031A007F2B48 /* JZJWebViewController.m */; };
 		85FA3FD71C0DC41A00EF9C1D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FA3FD61C0DC41A00EF9C1D /* main.m */; };
 		85FA3FE21C0DC41A00EF9C1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85FA3FE11C0DC41A00EF9C1D /* Assets.xcassets */; };
@@ -122,6 +130,21 @@
 		8578F0DD1C1907A50012E8CF /* JZJDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJDataManager.m; sourceTree = "<group>"; };
 		8578F0F91C1909290012E8CF /* JZJRequestCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJRequestCenter.h; sourceTree = "<group>"; };
 		8578F0FA1C1909290012E8CF /* JZJRequestCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJRequestCenter.m; sourceTree = "<group>"; };
+		857CB5691C1BBFB400174B42 /* JZJResort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJResort.h; sourceTree = "<group>"; };
+		857CB56A1C1BBFB400174B42 /* JZJResort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJResort.m; sourceTree = "<group>"; };
+		857CB56C1C1BC96D00174B42 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		857CB56E1C1BCE0500174B42 /* MBProgressHUD+KR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+KR.h"; sourceTree = "<group>"; };
+		857CB56F1C1BCE0500174B42 /* MBProgressHUD+KR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+KR.m"; sourceTree = "<group>"; };
+		857CB5701C1BCE0500174B42 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		857CB5711C1BCE0500174B42 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		857CB5721C1BCE0500174B42 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		857CB5761C1BDD7A00174B42 /* JZJSecondViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = JZJSecondViewController.storyboard; path = Controller/JZJSecondViewController.storyboard; sourceTree = "<group>"; };
+		857CB57B1C1BFC0500174B42 /* JZJDetailInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJDetailInformationViewController.h; sourceTree = "<group>"; };
+		857CB57C1C1BFC0500174B42 /* JZJDetailInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJDetailInformationViewController.m; sourceTree = "<group>"; };
+		857CB57E1C1C113800174B42 /* JZJTicketInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJTicketInformation.h; sourceTree = "<group>"; };
+		857CB57F1C1C113800174B42 /* JZJTicketInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJTicketInformation.m; sourceTree = "<group>"; };
+		857CB5811C1C11D200174B42 /* JZJTicketAttention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJTicketAttention.h; sourceTree = "<group>"; };
+		857CB5821C1C11D200174B42 /* JZJTicketAttention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJTicketAttention.m; sourceTree = "<group>"; };
 		85A4F2091C17031A007F2B48 /* JZJWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJWebViewController.h; sourceTree = "<group>"; };
 		85A4F20A1C17031A007F2B48 /* JZJWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJWebViewController.m; sourceTree = "<group>"; };
 		85FA3FD21C0DC41A00EF9C1D /* JZJTraveller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JZJTraveller.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +186,7 @@
 		8578F09D1C1907A50012E8CF /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				857CB56D1C1BCE0500174B42 /* MBProgessHUD */,
 				8578F09E1C1907A50012E8CF /* BottomFresh */,
 				8578F0B91C1907A50012E8CF /* SDWebImage */,
 			);
@@ -260,6 +284,18 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		857CB56D1C1BCE0500174B42 /* MBProgessHUD */ = {
+			isa = PBXGroup;
+			children = (
+				857CB56E1C1BCE0500174B42 /* MBProgressHUD+KR.h */,
+				857CB56F1C1BCE0500174B42 /* MBProgressHUD+KR.m */,
+				857CB5701C1BCE0500174B42 /* MBProgressHUD.bundle */,
+				857CB5711C1BCE0500174B42 /* MBProgressHUD.h */,
+				857CB5721C1BCE0500174B42 /* MBProgressHUD.m */,
+			);
+			path = MBProgessHUD;
+			sourceTree = "<group>";
+		};
 		85FA3FC91C0DC41A00EF9C1D = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +327,7 @@
 		85FA3FD51C0DC41A00EF9C1D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				857CB56C1C1BC96D00174B42 /* PrefixHeader.pch */,
 				85FA3FD61C0DC41A00EF9C1D /* main.m */,
 			);
 			name = "Supporting Files";
@@ -360,6 +397,7 @@
 				85FA3FF41C0DC46B00EF9C1D /* Controller */,
 				85FA3FF71C0DC46B00EF9C1D /* Model */,
 				85FA3FF81C0DC46B00EF9C1D /* View */,
+				857CB5761C1BDD7A00174B42 /* JZJSecondViewController.storyboard */,
 			);
 			path = Item2;
 			sourceTree = "<group>";
@@ -369,6 +407,8 @@
 			children = (
 				85FA3FF51C0DC46B00EF9C1D /* JZJSecondViewController.h */,
 				85FA3FF61C0DC46B00EF9C1D /* JZJSecondViewController.m */,
+				857CB57B1C1BFC0500174B42 /* JZJDetailInformationViewController.h */,
+				857CB57C1C1BFC0500174B42 /* JZJDetailInformationViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -376,6 +416,12 @@
 		85FA3FF71C0DC46B00EF9C1D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				857CB5691C1BBFB400174B42 /* JZJResort.h */,
+				857CB56A1C1BBFB400174B42 /* JZJResort.m */,
+				857CB57E1C1C113800174B42 /* JZJTicketInformation.h */,
+				857CB57F1C1C113800174B42 /* JZJTicketInformation.m */,
+				857CB5811C1C11D200174B42 /* JZJTicketAttention.h */,
+				857CB5821C1C11D200174B42 /* JZJTicketAttention.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -558,9 +604,11 @@
 			files = (
 				85FA3FE51C0DC41A00EF9C1D /* LaunchScreen.storyboard in Resources */,
 				856CE16E1C111DB2003E6820 /* JZJNavigationItem.xib in Resources */,
+				857CB5771C1BDD7A00174B42 /* JZJSecondViewController.storyboard in Resources */,
 				85FA3FE21C0DC41A00EF9C1D /* Assets.xcassets in Resources */,
 				997E80021C0DE34100EBC1A1 /* JZJTableViewCell.xib in Resources */,
 				85FA40191C0DC46B00EF9C1D /* JZJForthViewController.storyboard in Resources */,
+				857CB5741C1BCE0500174B42 /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,9 +621,12 @@
 			files = (
 				8578F0F21C1907A50012E8CF /* UIImage+GIF.m in Sources */,
 				85FA401B1C0DC46B00EF9C1D /* JZJTabBarController.m in Sources */,
+				857CB5731C1BCE0500174B42 /* MBProgressHUD+KR.m in Sources */,
 				8578F0E41C1907A50012E8CF /* NSArray+MASAdditions.m in Sources */,
 				997E80011C0DE34100EBC1A1 /* JZJTableViewCell.m in Sources */,
 				8578F0E51C1907A50012E8CF /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				857CB5801C1C113800174B42 /* JZJTicketInformation.m in Sources */,
+				857CB56B1C1BBFB400174B42 /* JZJResort.m in Sources */,
 				8578F0FB1C1909290012E8CF /* JZJRequestCenter.m in Sources */,
 				85FA401F1C0DC5E000EF9C1D /* JZJBooks.m in Sources */,
 				8578F0F11C1907A50012E8CF /* UIButton+WebCache.m in Sources */,
@@ -583,6 +634,7 @@
 				8578F0F31C1907A50012E8CF /* UIImage+MultiFormat.m in Sources */,
 				8578F0E71C1907A50012E8CF /* UIScrollView+BottomRefreshControl.m in Sources */,
 				8578F0EC1C1907A50012E8CF /* SDWebImageDecoder.m in Sources */,
+				857CB5831C1C11D200174B42 /* JZJTicketAttention.m in Sources */,
 				8578F0E21C1907A50012E8CF /* MASViewAttribute.m in Sources */,
 				8578F0F61C1907A50012E8CF /* UIImageView+WebCache.m in Sources */,
 				8578F0E11C1907A50012E8CF /* MASLayoutConstraint.m in Sources */,
@@ -599,6 +651,7 @@
 				8578F0F71C1907A50012E8CF /* UIView+WebCacheOperation.m in Sources */,
 				8578F0EB1C1907A50012E8CF /* SDWebImageCompat.m in Sources */,
 				8555A8691C104CDA0017C20C /* JZJWelcomeViewController.m in Sources */,
+				857CB5751C1BCE0500174B42 /* MBProgressHUD.m in Sources */,
 				8578F0E81C1907A50012E8CF /* MKAnnotationView+WebCache.m in Sources */,
 				8578F0E01C1907A50012E8CF /* MASConstraintMaker.m in Sources */,
 				856CE16C1C111D9D003E6820 /* JZJNavigationItem.m in Sources */,
@@ -609,6 +662,7 @@
 				8578F0EF1C1907A50012E8CF /* SDWebImageManager.m in Sources */,
 				8578F0F41C1907A50012E8CF /* UIImage+WebP.m in Sources */,
 				8578F0F81C1907A50012E8CF /* JZJDataManager.m in Sources */,
+				857CB57D1C1BFC0500174B42 /* JZJDetailInformationViewController.m in Sources */,
 				8578F0E61C1907A50012E8CF /* View+MASAdditions.m in Sources */,
 				8578F0EA1C1907A50012E8CF /* SDImageCache.m in Sources */,
 			);
@@ -712,6 +766,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = JZJTraveller/PrefixHeader.pch;
 				INFOPLIST_FILE = JZJTraveller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tarena.JZJTraveller;
@@ -723,6 +778,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = JZJTraveller/PrefixHeader.pch;
 				INFOPLIST_FILE = JZJTraveller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tarena.JZJTraveller;

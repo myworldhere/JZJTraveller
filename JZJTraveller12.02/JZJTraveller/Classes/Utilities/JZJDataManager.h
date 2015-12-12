@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 @class JZJBooks;
+@class JZJResort;
+@class JZJTicketInformation;
+@class JZJTicketAttention;
 @interface JZJDataManager : NSObject
-+(NSArray*)getBooksFromData:(id)data;
++(NSArray *)getBooksFromData:(id)data;
++(JZJResort *)getResortsFromData:(id)data;
++(JZJTicketInformation*)getTicketInformationOfResort:(NSDictionary*)tick_infoDict;
++(NSArray*)getTicketAttentionOfTicketInformation:(NSArray*)attentionArray;
 @end

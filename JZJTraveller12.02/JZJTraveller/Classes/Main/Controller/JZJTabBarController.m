@@ -25,8 +25,9 @@
     [self setupChildViewController:firstVC image:[UIImage imageNamed:@"home"] title:@"热门游记"];
     
     //2.add SecondViewController
-    JZJSecondViewController* secondVC=[[JZJSecondViewController alloc]init];
-    [self setupChildViewController:secondVC image:[UIImage imageNamed:@"circle"] title:@"xxxx"];
+    UIStoryboard* secondStoryBoard=[UIStoryboard storyboardWithName:@"JZJSecondViewController" bundle:nil];
+    JZJSecondViewController* secondVC=[secondStoryBoard instantiateInitialViewController];
+    [self setupChildViewController:secondVC image:[UIImage imageNamed:@"circle"] title:@"景点查询"];
     
     //3. add 3rdViewController
     JZJThirdViewController* thirdVC=[[JZJThirdViewController alloc]init];
