@@ -14,13 +14,16 @@
 #import "UIScrollView+BottomRefreshControl.h"
 #import "JZJRequestCenter.h"
 #import "MBProgressHUD+KR.h"
+#import "JZJSecondViewController.h"
+#import "UIBarButtonItem+JZJSearchItem.h"
 @interface JZJFirstViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSMutableArray* allBooks;
 @property (nonatomic,strong) NSURLSessionDataTask* task;
 @property (nonatomic,strong) UITableView* tableView;
 @property (nonatomic,strong) NSString* httpUrl;
 @property (nonatomic,strong) NSString* httpArg;
-@property (nonatomic,strong) JZJNavigationItem* itemView;
+@property (nonatomic,strong) JZJNavigationItem* leftItemView;
+@property (nonatomic,strong) JZJNavigationItem* rightItemView;
 @property (nonatomic,strong) NSString* cityName;
 @property (nonatomic,assign) int page;
 
@@ -46,53 +49,84 @@
     self.tableView.rowHeight=300;
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
-    
     [self loadNewBooksWithCityName:nil];
     [self setupRefreshControl];
     [self setupNavigationItem];
     [self.view addSubview:self.tableView];
     
+    UITapGestureRecognizer* tapGR=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGR:)];
+    [self.tableView addGestureRecognizer:tapGR];
+}
+
+-(void)tapGR:(UITapGestureRecognizer*)gr
+{
+    [self.leftItemView.searchTextField resignFirstResponder];
+    [self.rightItemView.searchTextField resignFirstResponder];
 }
 
 
 #pragma mark - navigationItem
 -(void)setupNavigationItem
 {
-    JZJNavigationItem* itemView=[JZJNavigationItem navigationBarView];
-    UIBarButtonItem* searchItem=[[UIBarButtonItem alloc]initWithCustomView:itemView];
-    self.navigationItem.leftBarButtonItem=searchItem;
+    JZJNavigationItem* leftItemView=[JZJNavigationItem navigationBarView];
     
-    [itemView.searchButton addTarget:self action:@selector(searchBlogs) forControlEvents:UIControlEventTouchUpInside];
-    [itemView.searchTextField addTarget:self action:@selector(searchBlogs) forControlEvents:UIControlEventEditingDidEndOnExit];
-    [itemView.searchTextField addTarget:self action:@selector(beginToInput) forControlEvents:UIControlEventEditingDidBegin];
-    self.itemView=itemView;
+    UIBarButtonItem* leftItem=[UIBarButtonItem generaterBarButtonItemWithCustomView:leftItemView Target:self buttonAction:@selector(searchBlogs) andTextfieldAction:@selector(beginToInput)];
+    self.navigationItem.leftBarButtonItem=leftItem;
+    self.leftItemView=leftItemView;
+    
+    
+    JZJNavigationItem* rightItemView=[JZJNavigationItem navigationBarView];
+    UIBarButtonItem* rightItem=[UIBarButtonItem generaterBarButtonItemWithCustomView:rightItemView Target:self buttonAction:@selector(searchResorts) andTextfieldAction:nil];
+    self.navigationItem.rightBarButtonItem=rightItem;
+    self.rightItemView=rightItemView;
+    rightItemView.searchTextField.placeholder=@"泰山";
+    
 }
 
 -(void)beginToInput
 {
-    [MBProgressHUD showError:@"请输入城市名, 如 西安 或xian "];
+    [MBProgressHUD showError:@"请输入城市名, 如 西安或 xian"];
+    
 }
 
-
+#pragma mark -搜索城市
 -(void)searchBlogs
 {
-    [self.itemView.searchTextField resignFirstResponder];
-    
-    NSMutableString *ms = [[NSMutableString alloc] initWithString:self.itemView.searchTextField.text];
+     [self.leftItemView.searchTextField resignFirstResponder];
+    self.cityName=[self MandarinTransformToLatin:self.leftItemView.searchTextField];
+    [self loadNewBooksWithCityName:self.cityName];
+    [self.tableView setContentOffset:CGPointZero animated:NO];
+}
+
+#pragma  mark -搜索热门景点
+-(void)searchResorts
+{
+    [self.rightItemView.searchTextField resignFirstResponder];
+
+    UIStoryboard* secondStroyboard=[UIStoryboard storyboardWithName:@"JZJSecondViewController" bundle:nil];
+    JZJSecondViewController* secondVC=[secondStroyboard instantiateInitialViewController];
+    secondVC.resortName=[self MandarinTransformToLatin:self.rightItemView.searchTextField];
+    secondVC.hidesBottomBarWhenPushed=YES;
+    [self.navigationController pushViewController:secondVC animated:YES];
+
+}
+
+#pragma mark - 汉字转拼音
+- (NSString*)MandarinTransformToLatin:(UITextField*)sender
+{
+    NSMutableString *ms = [[NSMutableString alloc] initWithString:sender.text];
     if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformMandarinLatin, NO)) {
-//        MYLog(@"Pingying: %@", ms); // wǒ shì zhōng guó rén
+        //        MYLog(@"Pingying: %@", ms); // wǒ shì zhōng guó rén
     }
     if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformStripDiacritics, NO)) {
-//        MYLog(@"Pingying: %@", ms); // wo shi zhong guo ren
+        //        MYLog(@"Pingying: %@", ms); // wo shi zhong guo ren
         if (ms.length)
         {
             NSRange range=[ms rangeOfString:ms];
             [ms replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:range];
         }
-        self.cityName=ms;
-        [self loadNewBooksWithCityName:self.cityName];
-        [self.tableView setContentOffset:CGPointZero animated:NO];
     }
+    return [ms copy];
 }
 
 #pragma  mark - 请求JSON数据
@@ -111,7 +145,7 @@
 
 - (void)sendRequestToServerWithCityName:(NSString*)cityName andPage:(int)page
 {
-    self.httpArg =[NSString stringWithFormat:@"query=%@&page=%d",cityName?cityName:@"%22%22",page];
+    self.httpArg =[NSString stringWithFormat:@"query=%@&page=%d",cityName?cityName:@"%22",page];
     [self requestWithHttpArg:self.httpArg];
  
 }

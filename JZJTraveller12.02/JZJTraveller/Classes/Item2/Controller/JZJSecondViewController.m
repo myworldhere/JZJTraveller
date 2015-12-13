@@ -13,7 +13,8 @@
 #import "JZJDetailInformationViewController.h"
 #import "JZJTicketInformation.h"
 #import "JZJTicketAttention.h"
-
+#import "UIBarButtonItem+JZJSearchItem.h"
+#import "JZJNavigationItem.h"
 @interface JZJSecondViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) NSURLSessionDataTask* task;
 @property (weak, nonatomic) IBOutlet UILabel *reSortNameLabel;
@@ -30,6 +31,7 @@
 @property (nonatomic,strong) NSArray* allAttentions;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ticketViewVerticalConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *ticketInformationTableView;
+@property (nonatomic,strong) JZJNavigationItem* rightItemView;
 
 @end
 
@@ -37,13 +39,53 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    NSString *httpArg = @"id=lushan&output=json";
-    [self requestWithHttpArg:httpArg];
-    self.ticketInformationTableView.dataSource=self;
-    self.ticketInformationTableView.delegate=self;
+    
+    [self loadNewResorts];
+    [self setupNavigationItem];
+    
 }
 
+-(void)setupNavigationItem
+{
+    JZJNavigationItem* rightItemView=[JZJNavigationItem navigationBarView];
+    UIBarButtonItem* rightItem=[UIBarButtonItem generaterBarButtonItemWithCustomView:rightItemView Target:self buttonAction:@selector(searchResorts) andTextfieldAction:nil];
+    self.navigationItem.rightBarButtonItem=rightItem;
+    self.rightItemView=rightItemView;
+    rightItemView.searchTextField.placeholder=@"泰山";
+}
+
+#pragma  mark -搜索热门景点
+-(void)searchResorts
+{
+    [self.rightItemView.searchTextField resignFirstResponder];
+    self.resortName=[self MandarinTransformToLatin:self.rightItemView.searchTextField];
+    [self loadNewResorts];
+}
+
+#pragma mark - 汉字转拼音
+- (NSString*)MandarinTransformToLatin:(UITextField*)sender
+{
+    NSMutableString *ms = [[NSMutableString alloc] initWithString:sender.text];
+    if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformMandarinLatin, NO)) {
+        //        MYLog(@"Pingying: %@", ms); // wǒ shì zhōng guó rén
+    }
+    if (CFStringTransform((__bridge CFMutableStringRef)ms, 0, kCFStringTransformStripDiacritics, NO)) {
+        //        MYLog(@"Pingying: %@", ms); // wo shi zhong guo ren
+        if (ms.length)
+        {
+            NSRange range=[ms rangeOfString:ms];
+            [ms replaceOccurrencesOfString:@" " withString:@"" options:NSCaseInsensitiveSearch range:range];
+        }
+    }
+    return [ms copy];
+}
+
+-(void)loadNewResorts
+{
+    NSString *httpArg =[NSString stringWithFormat:@"id=%@&output=json",self.resortName];
+    [self requestWithHttpArg:httpArg];
+
+}
 
 -(void)requestWithHttpArg:(NSString*)httpArg
 {
@@ -130,7 +172,6 @@
     [self.navigationController pushViewController:detailInfoVC animated:YES];
 }
 
-
 - (IBAction)TicketInfoButton:(id)sender
 {
     [self.ticketInformationTableView reloadData];
@@ -141,10 +182,9 @@
     }completion:nil];
 }
 
-
 - (IBAction)clickreturnButtonOfTicketInfoTableView:(id)sender
 {
-    self.ticketViewVerticalConstraint.constant=600;
+    self.ticketViewVerticalConstraint.constant=self.view.bounds.size.height;
     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionAllowAnimatedContent
                      animations:^{
                          [self.view layoutIfNeeded];
@@ -155,14 +195,14 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 
-    return 3;
+    return [self.resort.ticket_info allKeys].count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section==2)
     {
        
-        return self.allAttentions.count;
+        return self.information.attention.count;
     }
     return 1;
 }
@@ -175,25 +215,29 @@
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
         cell.textLabel.numberOfLines=0;
         cell.detailTextLabel.numberOfLines=0;
+        cell.textLabel.font=[UIFont systemFontOfSize:10];
+        cell.detailTextLabel.font=[UIFont systemFontOfSize:10];
     }
     switch (indexPath.section)
     {
         case 0:
         {
             cell.textLabel.text=self.information.price;
+            cell.detailTextLabel.text=nil;
         }
             break;
         case 1:
         {
             cell.textLabel.text=self.information.open_time;
+            cell.detailTextLabel.text=nil;
         }
             break;
             
         case 2:
         {
             JZJTicketAttention* attention=self.allAttentions[indexPath.row];
-            cell.textLabel.text=attention.name;
-            cell.detailTextLabel.text=attention.attentionDescription;
+            cell.textLabel.text=attention.attentionDescription;
+            cell.detailTextLabel.text=attention.name;
         }
             break;
     }
@@ -203,5 +247,12 @@
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewAutomaticDimension;
+}
+
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSArray* allkeys=[self.resort.ticket_info allKeys];
+    
+    return allkeys[section];
 }
 @end

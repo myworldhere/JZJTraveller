@@ -60,6 +60,7 @@
 		85FA401F1C0DC5E000EF9C1D /* JZJBooks.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FA401E1C0DC5E000EF9C1D /* JZJBooks.m */; };
 		997E80011C0DE34100EBC1A1 /* JZJTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 997E7FFF1C0DE34100EBC1A1 /* JZJTableViewCell.m */; };
 		997E80021C0DE34100EBC1A1 /* JZJTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997E80001C0DE34100EBC1A1 /* JZJTableViewCell.xib */; };
+		99D23D7A1C1D97D900739371 /* UIBarButtonItem+JZJSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D23D791C1D97D900739371 /* UIBarButtonItem+JZJSearchItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +171,8 @@
 		997E7FFE1C0DE34100EBC1A1 /* JZJTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJTableViewCell.h; sourceTree = "<group>"; };
 		997E7FFF1C0DE34100EBC1A1 /* JZJTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJTableViewCell.m; sourceTree = "<group>"; };
 		997E80001C0DE34100EBC1A1 /* JZJTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZJTableViewCell.xib; sourceTree = "<group>"; };
+		99D23D781C1D97D900739371 /* UIBarButtonItem+JZJSearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+JZJSearchItem.h"; sourceTree = "<group>"; };
+		99D23D791C1D97D900739371 /* UIBarButtonItem+JZJSearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+JZJSearchItem.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +283,8 @@
 				8578F0DD1C1907A50012E8CF /* JZJDataManager.m */,
 				8578F0F91C1909290012E8CF /* JZJRequestCenter.h */,
 				8578F0FA1C1909290012E8CF /* JZJRequestCenter.m */,
+				99D23D781C1D97D900739371 /* UIBarButtonItem+JZJSearchItem.h */,
+				99D23D791C1D97D900739371 /* UIBarButtonItem+JZJSearchItem.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -646,6 +651,7 @@
 				8578F0F51C1907A50012E8CF /* UIImageView+HighlightedWebCache.m in Sources */,
 				8578F0E31C1907A50012E8CF /* MASViewConstraint.m in Sources */,
 				85FA3FD71C0DC41A00EF9C1D /* main.m in Sources */,
+				99D23D7A1C1D97D900739371 /* UIBarButtonItem+JZJSearchItem.m in Sources */,
 				85FA40161C0DC46B00EF9C1D /* JZJSecondViewController.m in Sources */,
 				85FA40171C0DC46B00EF9C1D /* JZJThirdViewController.m in Sources */,
 				8578F0F71C1907A50012E8CF /* UIView+WebCacheOperation.m in Sources */,

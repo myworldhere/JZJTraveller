@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface JZJSecondViewController : UIViewController
-
+@property (nonatomic,strong) NSString* resortName;
 @end
