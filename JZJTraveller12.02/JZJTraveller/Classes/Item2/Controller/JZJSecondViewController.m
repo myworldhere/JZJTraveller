@@ -32,7 +32,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ticketViewVerticalConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *ticketInformationTableView;
 @property (nonatomic,strong) JZJNavigationItem* rightItemView;
-
+@property (nonatomic,strong) UITapGestureRecognizer* tapGR;
 @end
 
 @implementation JZJSecondViewController
@@ -42,7 +42,14 @@
     
     [self loadNewResorts];
     [self setupNavigationItem];
+    self.tapGR=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGR:)];
+    [self.view addGestureRecognizer:self.tapGR];
     
+}
+
+-(void)tapGR:(UITapGestureRecognizer*)gr
+{
+    [self.rightItemView.searchTextField resignFirstResponder];
 }
 
 -(void)setupNavigationItem
@@ -174,6 +181,8 @@
 
 - (IBAction)TicketInfoButton:(id)sender
 {
+    
+    [self.ticketInformationTableView addGestureRecognizer:self.tapGR];
     [self.ticketInformationTableView reloadData];
     self.ticketViewVerticalConstraint.constant=50;
     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionAllowAnimatedContent animations:
@@ -184,6 +193,8 @@
 
 - (IBAction)clickreturnButtonOfTicketInfoTableView:(id)sender
 {
+    [self.view addGestureRecognizer:self.tapGR];
+    
     self.ticketViewVerticalConstraint.constant=self.view.bounds.size.height;
     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionAllowAnimatedContent
                      animations:^{
