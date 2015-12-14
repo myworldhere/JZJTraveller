@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8543E3991C1EEFF800CDDE72 /* JZJTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8543E3981C1EEFF800CDDE72 /* JZJTrain.m */; };
 		8555A8691C104CDA0017C20C /* JZJWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8555A8681C104CDA0017C20C /* JZJWelcomeViewController.m */; };
 		856CE16C1C111D9D003E6820 /* JZJNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 856CE16B1C111D9D003E6820 /* JZJNavigationItem.m */; };
 		856CE16E1C111DB2003E6820 /* JZJNavigationItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856CE16D1C111DB2003E6820 /* JZJNavigationItem.xib */; };
@@ -64,6 +65,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8543E3971C1EEFF800CDDE72 /* JZJTrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJTrain.h; sourceTree = "<group>"; };
+		8543E3981C1EEFF800CDDE72 /* JZJTrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJTrain.m; sourceTree = "<group>"; };
 		8555A8671C104CDA0017C20C /* JZJWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJWelcomeViewController.h; sourceTree = "<group>"; };
 		8555A8681C104CDA0017C20C /* JZJWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJWelcomeViewController.m; sourceTree = "<group>"; };
 		856CE16A1C111D9D003E6820 /* JZJNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJNavigationItem.h; sourceTree = "<group>"; };
@@ -460,6 +463,8 @@
 		85FA3FFD1C0DC46B00EF9C1D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8543E3971C1EEFF800CDDE72 /* JZJTrain.h */,
+				8543E3981C1EEFF800CDDE72 /* JZJTrain.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -657,6 +662,7 @@
 				8578F0F71C1907A50012E8CF /* UIView+WebCacheOperation.m in Sources */,
 				8578F0EB1C1907A50012E8CF /* SDWebImageCompat.m in Sources */,
 				8555A8691C104CDA0017C20C /* JZJWelcomeViewController.m in Sources */,
+				8543E3991C1EEFF800CDDE72 /* JZJTrain.m in Sources */,
 				857CB5751C1BCE0500174B42 /* MBProgressHUD.m in Sources */,
 				8578F0E81C1907A50012E8CF /* MKAnnotationView+WebCache.m in Sources */,
 				8578F0E01C1907A50012E8CF /* MASConstraintMaker.m in Sources */,

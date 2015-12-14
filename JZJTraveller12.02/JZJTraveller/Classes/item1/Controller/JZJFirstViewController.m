@@ -26,6 +26,7 @@
 @property (nonatomic,strong) JZJNavigationItem* rightItemView;
 @property (nonatomic,strong) NSString* cityName;
 @property (nonatomic,assign) int page;
+@property (nonatomic,strong) UITapGestureRecognizer* tapGR;
 
 @end
 
@@ -47,6 +48,7 @@
     self.tableView=[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [self.tableView registerNib:[UINib nibWithNibName:@"JZJTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.tableView.rowHeight=300;
+    
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     [self loadNewBooksWithCityName:nil];
@@ -54,16 +56,34 @@
     [self setupNavigationItem];
     [self.view addSubview:self.tableView];
     
-    UITapGestureRecognizer* tapGR=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGR:)];
-    [self.tableView addGestureRecognizer:tapGR];
+    self.tapGR=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGR:)];
+
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShowed:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHided:) name:UIKeyboardWillHideNotification object:nil];
+}
+- (void)keyboardShowed:(NSNotification*)notification
+{
+    
+    [self.tableView addGestureRecognizer:self.tapGR];
+    
+}
+
+- (void)keyboardHided:(NSNotification*)notification
+{
+    [self.tableView removeGestureRecognizer:self.tapGR];
+}
+
 
 -(void)tapGR:(UITapGestureRecognizer*)gr
 {
     [self.leftItemView.searchTextField resignFirstResponder];
     [self.rightItemView.searchTextField resignFirstResponder];
 }
-
 
 #pragma mark - navigationItem
 -(void)setupNavigationItem
@@ -92,7 +112,7 @@
 #pragma mark -搜索城市
 -(void)searchBlogs
 {
-     [self.leftItemView.searchTextField resignFirstResponder];
+    [self.leftItemView.searchTextField resignFirstResponder];
     self.cityName=[self MandarinTransformToLatin:self.leftItemView.searchTextField];
     [self loadNewBooksWithCityName:self.cityName];
     [self.tableView setContentOffset:CGPointZero animated:NO];
@@ -108,7 +128,7 @@
     secondVC.resortName=[self MandarinTransformToLatin:self.rightItemView.searchTextField];
     secondVC.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:secondVC animated:YES];
-
+    
 }
 
 #pragma mark - 汉字转拼音

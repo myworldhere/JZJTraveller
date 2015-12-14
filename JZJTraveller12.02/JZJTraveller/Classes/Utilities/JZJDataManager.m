@@ -11,6 +11,7 @@
 #import "JZJResort.h"
 #import "JZJTicketInformation.h"
 #import "JZJTicketAttention.h"
+#import "JZJTrain.h"
 @implementation JZJDataManager
 
 
@@ -62,6 +63,11 @@
         [attentionMutableArray addObject:attention];
     }
     return [attentionMutableArray copy];
+}
+#pragma  mark - 解析列车信息列表
++(NSArray *)getTrainList:(id)data
+{
+    return [[self alloc]parseJSONDataForClass:[JZJTrain class] WithData:data];
 }
 
 @end

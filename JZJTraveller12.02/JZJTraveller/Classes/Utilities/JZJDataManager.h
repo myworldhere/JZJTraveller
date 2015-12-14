@@ -11,9 +11,11 @@
 @class JZJResort;
 @class JZJTicketInformation;
 @class JZJTicketAttention;
+@class JZJTrain;
 @interface JZJDataManager : NSObject
 +(NSArray *)getBooksFromData:(id)data;
 +(JZJResort *)getResortsFromData:(id)data;
 +(JZJTicketInformation*)getTicketInformationOfResort:(NSDictionary*)tick_infoDict;
 +(NSArray*)getTicketAttentionOfTicketInformation:(NSArray*)attentionArray;
++(NSArray*)getTrainList:(id)data;
 @end
