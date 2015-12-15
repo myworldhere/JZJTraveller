@@ -12,6 +12,7 @@
 #import "JZJTicketInformation.h"
 #import "JZJTicketAttention.h"
 #import "JZJTrain.h"
+#import "JZJSeatInfo.h"
 @implementation JZJDataManager
 
 
@@ -69,5 +70,9 @@
 {
     return [[self alloc]parseJSONDataForClass:[JZJTrain class] WithData:data];
 }
-
+#pragma mark -解析列车票务详情
++(NSArray *)getSeatInfo:(id)data
+{
+    return [[self alloc]parseJSONDataForClass:[JZJSeatInfo class] WithData:data];
+}
 @end

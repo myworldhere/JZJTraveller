@@ -19,19 +19,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tabBar.backgroundImage=[UIImage imageNamed:@"tabbar_back"];
     //1.add FirstViewController
     //1.1 initialization
     JZJFirstViewController* firstVC=[[JZJFirstViewController alloc]init];
     [self setupChildViewController:firstVC image:[UIImage imageNamed:@"home"] title:@"热门游记"];
     
     //2.add SecondViewController
-    UIStoryboard* secondStoryBoard=[UIStoryboard storyboardWithName:@"JZJSecondViewController" bundle:nil];
-    JZJSecondViewController* secondVC=[secondStoryBoard instantiateInitialViewController];
+    UIStoryboard* secondStoryboard=[UIStoryboard storyboardWithName:@"JZJSecondViewController" bundle:nil];
+    JZJSecondViewController* secondVC=[secondStoryboard instantiateInitialViewController];
     [self setupChildViewController:secondVC image:[UIImage imageNamed:@"circle"] title:@"景点查询"];
     
     //3. add 3rdViewController
-    JZJThirdViewController* thirdVC=[[JZJThirdViewController alloc]init];
-    [self setupChildViewController:thirdVC image:[UIImage imageNamed:@"heart"] title:@"xxx"];
+    UIStoryboard* thirdStoryboard=[UIStoryboard storyboardWithName:@"JZJThirdViewController" bundle:nil];
+    JZJThirdViewController* thirdVC=[thirdStoryboard instantiateInitialViewController];
+    [self setupChildViewController:thirdVC image:[UIImage imageNamed:@"train"] title:@"列车时刻"];
     
     //4. add 4thViewController
     UIStoryboard* storyboard=[UIStoryboard storyboardWithName:@"JZJForthViewController" bundle:nil];

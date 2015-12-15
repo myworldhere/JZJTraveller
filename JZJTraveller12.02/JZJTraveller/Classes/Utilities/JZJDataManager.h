@@ -18,4 +18,5 @@
 +(JZJTicketInformation*)getTicketInformationOfResort:(NSDictionary*)tick_infoDict;
 +(NSArray*)getTicketAttentionOfTicketInformation:(NSArray*)attentionArray;
 +(NSArray*)getTrainList:(id)data;
++(NSArray*)getSeatInfo:(id)data;
 @end
