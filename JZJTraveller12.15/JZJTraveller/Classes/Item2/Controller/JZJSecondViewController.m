@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *ticketInformationTableView;
 @property (nonatomic,strong) JZJNavigationItem* rightItemView;
 @property (nonatomic,strong) UITapGestureRecognizer* tapGR;
+
 @end
 
 @implementation JZJSecondViewController
