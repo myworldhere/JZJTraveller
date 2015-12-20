@@ -47,7 +47,7 @@
     NSArray* allseats=[JZJDataManager getSeatInfo:self.trainInfo.seatInfos];
     
     cell.seatInfo=allseats[indexPath.row];
-
+    
     return cell;
 }
 

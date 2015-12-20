@@ -14,7 +14,7 @@
 #import "JZJSeatsInfoTableViewController.h"
 @interface JZJThirdViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) NSURLSessionDataTask* task;
-@property (nonatomic,strong) NSMutableArray* allTrainLists;
+@property (nonatomic,strong) NSArray* allTrainLists;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UITextField *startStationTextField;
@@ -23,14 +23,6 @@
 
 @implementation JZJThirdViewController
 
--(NSMutableArray *)allTrainLists
-{
-    if (!_allTrainLists)
-    {
-        _allTrainLists=[@[]mutableCopy];
-    }
-    return _allTrainLists;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -39,7 +31,7 @@
 
 - (IBAction)clickSearchButton:(id)sender
 {
-    [self.allTrainLists removeAllObjects];
+  
     [self.tableView reloadData];
     if ([self.startStationTextField.text isEqualToString:@""]||[self.destinationTextField.text isEqualToString:@""])
     {
@@ -84,8 +76,12 @@
             {
                
                NSDictionary* originalDict=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                NSDictionary* trainListArray=originalDict[@"data"][@"trainList"];
-                [self.allTrainLists addObjectsFromArray:[JZJDataManager getTrainList:trainListArray]];
+                id trainListArray=originalDict[@"data"][@"trainList"];
+                if (![trainListArray isKindOfClass:[NSNull class]])
+                {
+                    self.allTrainLists = [JZJDataManager getTrainList:trainListArray];
+                }
+               
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
                 });
