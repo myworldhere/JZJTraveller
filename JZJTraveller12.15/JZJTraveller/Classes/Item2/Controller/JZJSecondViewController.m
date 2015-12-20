@@ -44,7 +44,6 @@
     [self setupNavigationItem];
     self.tapGR=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGR:)];
     [self.view addGestureRecognizer:self.tapGR];
-    
 }
 
 -(void)tapGR:(UITapGestureRecognizer*)gr
@@ -134,12 +133,20 @@
             case 1:
             {
                 self.firstStarImageView.image=[UIImage imageNamed:@"solidStar"];
+                self.secondStarImageView.image=[UIImage imageNamed:@"hollowStar"];
+                self.thirdStarImageView.image=[UIImage imageNamed:@"hollowStar"];
+                self.forthStarImageView.image=[UIImage imageNamed:@"hollowStar"];
+                self.fifthStarImageView.image=[UIImage imageNamed:@"hollowStar"];
+                
             }
                 break;
             case 2:
             {
                 self.firstStarImageView.image=[UIImage imageNamed:@"solidStar"];
                 self.secondStarImageView.image=[UIImage imageNamed:@"solidStar"];
+                self.thirdStarImageView.image=[UIImage imageNamed:@"hollowStar"];
+                self.forthStarImageView.image=[UIImage imageNamed:@"hollowStar"];
+                self.fifthStarImageView.image=[UIImage imageNamed:@"hollowStar"];
             }
                 break;
             case 3:
@@ -147,6 +154,8 @@
                 self.firstStarImageView.image=[UIImage imageNamed:@"solidStar"];
                 self.secondStarImageView.image=[UIImage imageNamed:@"solidStar"];
                 self.thirdStarImageView.image=[UIImage imageNamed:@"solidStar"];
+                self.forthStarImageView.image=[UIImage imageNamed:@"hollowStar"];
+                self.fifthStarImageView.image=[UIImage imageNamed:@"hollowStar"];
             }
                 break;
             case 4:
@@ -155,6 +164,7 @@
                 self.secondStarImageView.image=[UIImage imageNamed:@"solidStar"];
                 self.thirdStarImageView.image=[UIImage imageNamed:@"solidStar"];
                 self.forthStarImageView.image=[UIImage imageNamed:@"solidStar"];
+                self.fifthStarImageView.image=[UIImage imageNamed:@"hollowStar"];
             }
                 break;
             case 5:

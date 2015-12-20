@@ -27,8 +27,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
+    
 }
+
+- (IBAction)finishInputStartingStation:(id)sender
+{
+    [self.destinationTextField becomeFirstResponder];
+}
+
+- (IBAction)finishInputDestination:(id)sender
+{
+    [self clickSearchButton:nil];
+}
+
+
 
 - (IBAction)clickSearchButton:(id)sender
 {
@@ -55,12 +67,7 @@
     [self requestWithHttpArg:httpArg];
     [self.view endEditing:YES];
 
-
 }
-
-
-
-
 
 -(void)requestWithHttpArg: (NSString*)HttpArg  {
     NSString *httpUrl = @"http://apis.baidu.com/qunar/qunar_train_service/s2ssearch";

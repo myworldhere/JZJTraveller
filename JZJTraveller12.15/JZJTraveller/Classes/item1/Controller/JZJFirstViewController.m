@@ -203,7 +203,7 @@
     [self.task resume];
 }
 
-#pragma mark - 下拉刷新
+#pragma mark - 上拉加载
 - (void)setupRefreshControl
 {
     UIRefreshControl* refreshControl=[[UIRefreshControl alloc]init];
