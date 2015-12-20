@@ -11,4 +11,5 @@
 @class JZJTrain;
 @interface JZJSeatsInfoTableViewController : UITableViewController
 @property (nonatomic,strong) JZJTrain* trainInfo;
+
 @end

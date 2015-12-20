@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UITextField *startStationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *destinationTextField;
+
 @end
 
 @implementation JZJThirdViewController

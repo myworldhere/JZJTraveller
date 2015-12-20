@@ -27,7 +27,6 @@
 @property (nonatomic,strong) NSString* cityName;
 @property (nonatomic,assign) int page;
 @property (nonatomic,strong) UITapGestureRecognizer* tapGR;
-
 @end
 
 
