@@ -10,4 +10,5 @@
 @class JZJTrain;
 @interface JZJTrainTableViewCell : UITableViewCell
 @property (nonatomic,strong) JZJTrain* trainInfo;
+-(void)setArrowImageViewWhitIfUnfold:(BOOL)unfold;
 @end

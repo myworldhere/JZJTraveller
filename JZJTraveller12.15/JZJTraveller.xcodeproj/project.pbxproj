@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		85028DD61C2027C50036F127 /* JZJTrainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85028DD51C2027C50036F127 /* JZJTrainTableViewCell.m */; };
-		85028DD91C203FB60036F127 /* JZJSeatsInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85028DD81C203FB60036F127 /* JZJSeatsInfoTableViewController.m */; };
 		85028DDC1C2043020036F127 /* JZJSeatInfosTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85028DDB1C2043020036F127 /* JZJSeatInfosTableViewCell.m */; };
 		85028DDF1C2043A20036F127 /* JZJSeatInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85028DDE1C2043A20036F127 /* JZJSeatInfo.m */; };
 		85141AE91C217D8B00EF2871 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85141AC61C217D8B00EF2871 /* AFHTTPSessionManager.m */; };
@@ -89,8 +88,6 @@
 /* Begin PBXFileReference section */
 		85028DD41C2027C50036F127 /* JZJTrainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJTrainTableViewCell.h; sourceTree = "<group>"; };
 		85028DD51C2027C50036F127 /* JZJTrainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJTrainTableViewCell.m; sourceTree = "<group>"; };
-		85028DD71C203FB60036F127 /* JZJSeatsInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJSeatsInfoTableViewController.h; sourceTree = "<group>"; };
-		85028DD81C203FB60036F127 /* JZJSeatsInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJSeatsInfoTableViewController.m; sourceTree = "<group>"; };
 		85028DDA1C2043020036F127 /* JZJSeatInfosTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJSeatInfosTableViewCell.h; sourceTree = "<group>"; };
 		85028DDB1C2043020036F127 /* JZJSeatInfosTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZJSeatInfosTableViewCell.m; sourceTree = "<group>"; };
 		85028DDD1C2043A20036F127 /* JZJSeatInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZJSeatInfo.h; sourceTree = "<group>"; };
@@ -581,8 +578,6 @@
 			children = (
 				85FA3FFB1C0DC46B00EF9C1D /* JZJThirdViewController.h */,
 				85FA3FFC1C0DC46B00EF9C1D /* JZJThirdViewController.m */,
-				85028DD71C203FB60036F127 /* JZJSeatsInfoTableViewController.h */,
-				85028DD81C203FB60036F127 /* JZJSeatsInfoTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -769,7 +764,6 @@
 				85141AF61C217D8B00EF2871 /* UIImageView+AFNetworking.m in Sources */,
 				85FA401B1C0DC46B00EF9C1D /* JZJTabBarController.m in Sources */,
 				857CB5731C1BCE0500174B42 /* MBProgressHUD+KR.m in Sources */,
-				85028DD91C203FB60036F127 /* JZJSeatsInfoTableViewController.m in Sources */,
 				8578F0E41C1907A50012E8CF /* NSArray+MASAdditions.m in Sources */,
 				85141AEE1C217D8B00EF2871 /* AFURLSessionManager.m in Sources */,
 				85141AF41C217D8B00EF2871 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

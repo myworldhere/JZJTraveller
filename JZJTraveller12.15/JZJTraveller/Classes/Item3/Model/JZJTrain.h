@@ -17,5 +17,5 @@
 @property (nonatomic,strong) NSString* endTime;
 @property (nonatomic,strong) NSString* duration;
 @property (nonatomic,strong) NSArray* seatInfos;
-
+@property (nonatomic,getter=isUnfold) BOOL unfold;
 @end

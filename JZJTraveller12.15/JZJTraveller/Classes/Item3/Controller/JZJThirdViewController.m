@@ -11,7 +11,7 @@
 #import "JZJDataManager.h"
 #import "JZJTrainTableViewCell.h"
 #import "JZJTrain.h"
-#import "JZJSeatsInfoTableViewController.h"
+
 @interface JZJThirdViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) NSURLSessionDataTask* task;
 @property (nonatomic,strong) NSArray* allTrainLists;
@@ -106,15 +106,18 @@
     [super didReceiveMemoryWarning];
     
 }
+
 #pragma mark - UITableView DataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.allTrainLists.count;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     JZJTrainTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"trainCell" forIndexPath:indexPath];
@@ -124,16 +127,35 @@
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return UITableViewAutomaticDimension;
+    JZJTrain* trainInfo=self.allTrainLists[indexPath.row];
+    if (trainInfo.unfold)
+    {
+        return trainInfo.seatInfos.count*44+55+0.5;
+    }
+    return 55+0.5;
 }
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     JZJTrain* trainInfo=self.allTrainLists[indexPath.row];
-    JZJSeatsInfoTableViewController* seatInfoVC=[self.storyboard instantiateViewControllerWithIdentifier:@"seatInfoVC"];
-    seatInfoVC.trainInfo=trainInfo;
-    [self.navigationController pushViewController:seatInfoVC animated:YES];
+    
+    trainInfo.unfold=!trainInfo.unfold;
+    
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+    /**设置图片箭头旋转*/
+    JZJTrainTableViewCell *cell = (JZJTrainTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    [cell setArrowImageViewWhitIfUnfold:trainInfo.unfold];
+    
+    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+
 }
+
+
+
+
 @end
