@@ -27,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.tableFooterView=[UIView new];
     
 }
 
@@ -133,7 +134,7 @@
     JZJTrain* trainInfo=self.allTrainLists[indexPath.row];
     if (trainInfo.unfold)
     {
-        return trainInfo.seatInfos.count*44+55+0.5;
+        return trainInfo.seatInfos.count*55+55+0.5;
     }
     return 55+0.5;
 }

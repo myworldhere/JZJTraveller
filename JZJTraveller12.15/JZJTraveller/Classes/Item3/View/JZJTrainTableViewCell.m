@@ -9,6 +9,7 @@
 #import "JZJTrainTableViewCell.h"
 #include "JZJSeatInfosTableViewCell.h"
 #import "JZJTrain.h"
+#import "JZJDataManager.h"
 @interface JZJTrainTableViewCell ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 @property (weak, nonatomic) IBOutlet UILabel *trainNoLabel;
@@ -34,18 +35,19 @@
     self.durationLabel.text=_trainInfo.duration;
     self.endTimeLabel.text=_trainInfo.endTime;
     self.destinationStationLabel.text=_trainInfo.to;
-    self.allseats = _trainInfo.seatInfos;
-    
+    self.allseats =[JZJDataManager getSeatInfo:_trainInfo.seatInfos];
+    [self.seatsInfoTableView reloadData];
 }
 
+-(void)awakeFromNib
+{
+    self.seatsInfoTableView.scrollEnabled=NO;
+    self.seatsInfoTableView.dataSource=self;
+    self.seatsInfoTableView.delegate=self;
+}
 
 
 #pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -55,9 +57,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    JZJSeatInfosTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"seatCell"forIndexPath:indexPath];
+    JZJSeatInfosTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"seatCell"];
 
     cell.seatInfo = self.allseats[indexPath.row];
+
     return cell;
 }
 
@@ -80,7 +83,9 @@
     } completion:NULL];
     
 }
-
-
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  UITableViewAutomaticDimension;
+}
 
 @end

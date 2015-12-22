@@ -17,7 +17,6 @@
 		85141AED1C217D8B00EF2871 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 85141ACF1C217D8B00EF2871 /* AFURLResponseSerialization.m */; };
 		85141AEE1C217D8B00EF2871 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85141AD11C217D8B00EF2871 /* AFURLSessionManager.m */; };
 		85141AEF1C217D8B00EF2871 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 85141AD21C217D8B00EF2871 /* LICENSE */; };
-		85141AF01C217D8B00EF2871 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 85141AD31C217D8B00EF2871 /* README.md */; };
 		85141AF11C217D8B00EF2871 /* AFAutoPurgingImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 85141AD61C217D8B00EF2871 /* AFAutoPurgingImageCache.m */; };
 		85141AF21C217D8B00EF2871 /* AFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 85141AD81C217D8B00EF2871 /* AFImageDownloader.m */; };
 		85141AF31C217D8B00EF2871 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85141ADA1C217D8B00EF2871 /* AFNetworkActivityIndicatorManager.m */; };
@@ -106,7 +105,6 @@
 		85141AD01C217D8B00EF2871 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		85141AD11C217D8B00EF2871 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		85141AD21C217D8B00EF2871 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		85141AD31C217D8B00EF2871 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		85141AD51C217D8B00EF2871 /* AFAutoPurgingImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAutoPurgingImageCache.h; sourceTree = "<group>"; };
 		85141AD61C217D8B00EF2871 /* AFAutoPurgingImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAutoPurgingImageCache.m; sourceTree = "<group>"; };
 		85141AD71C217D8B00EF2871 /* AFImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageDownloader.h; sourceTree = "<group>"; };
@@ -257,7 +255,6 @@
 			children = (
 				85141AC41C217D8B00EF2871 /* AFNetworking */,
 				85141AD21C217D8B00EF2871 /* LICENSE */,
-				85141AD31C217D8B00EF2871 /* README.md */,
 				85141AD41C217D8B00EF2871 /* UIKit+AFNetworking */,
 			);
 			path = AFNetworking;
@@ -787,7 +784,6 @@
 				85028DDC1C2043020036F127 /* JZJSeatInfosTableViewCell.m in Sources */,
 				8578F0E11C1907A50012E8CF /* MASLayoutConstraint.m in Sources */,
 				8578F0DE1C1907A50012E8CF /* MASCompositeConstraint.m in Sources */,
-				85141AF01C217D8B00EF2871 /* README.md in Sources */,
 				85141AF21C217D8B00EF2871 /* AFImageDownloader.m in Sources */,
 				8578F0E91C1907A50012E8CF /* NSData+ImageContentType.m in Sources */,
 				8578F0ED1C1907A50012E8CF /* SDWebImageDownloader.m in Sources */,
